@@ -26,7 +26,7 @@ Disable the balancer to stop [chunk migration](https://docs.mongodb.com/manual/c
 
 To disable the balancer, connect to one of the cluster's [`mongos`](https://docs.mongodb.com/manual/reference/program/mongos/#mongodb-binary-bin.mongos) instances and issue the following command: [[1\]](https://docs.mongodb.com/manual/tutorial/restart-sharded-cluster/#footnote-autosplit-stop)
 
-如果要关闭平衡器，连接一个mongos的实例，使用如下命令：
+如果要关闭平衡器，连接到一个mongos的实例，使用如下命令：
 
 `sh.stopBalancer()`
 
@@ -52,7 +52,7 @@ For more information, see [Disable the Balancer](https://docs.mongodb.com/manual
 
 Run [`db.shutdownServer()`](https://docs.mongodb.com/manual/reference/method/db.shutdownServer/#mongodb-method-db.shutdownServer) from the `admin` database on each [`mongos`](https://docs.mongodb.com/manual/reference/program/mongos/#mongodb-binary-bin.mongos) router:
 
-在每个 [`mongos`](https://docs.mongodb.com/manual/reference/program/mongos/#mongodb-binary-bin.mongos) 路由上，从admin数据库中运行 [`db.shutdownServer()`](https://docs.mongodb.com/manual/reference/method/db.shutdownServer/#mongodb-method-db.shutdownServer) ：
+在每个 [`mongos`](https://docs.mongodb.com/manual/reference/program/mongos/#mongodb-binary-bin.mongos) 路由上，从'admin'数据库中运行 [`db.shutdownServer()`](https://docs.mongodb.com/manual/reference/method/db.shutdownServer/#mongodb-method-db.shutdownServer) ：
 
 `use admin`
 `db.shutdownServer()`
@@ -97,7 +97,7 @@ If using a configuration file, start the [`mongod`](https://docs.mongodb.com/man
 
 **Command Line**
 
-##### 命令行
+**命令行**
 
 If using the command line options, start the [`mongod`](https://docs.mongodb.com/manual/reference/program/mongod/#mongodb-binary-bin.mongod) with the `--configsvr`, `--replSet`, `--bind_ip`, and other options as appropriate to your deployment. For example:
 
@@ -133,13 +133,13 @@ If using a configuration file, start the [`mongod`](https://docs.mongodb.com/man
 
 If using the command line option, start the [`mongod`](https://docs.mongodb.com/manual/reference/program/mongod/#mongodb-binary-bin.mongod) with the `--replSet`, `--shardsvr`, and `--bind_ip` options, and other options as appropriate to your deployment. For example:
 
-如果使用命令行，使用`--replSet`, `--shardsvr`和--bind_ip选项和其他相应选项启动mongod，例如：
+如果要进行命令行，可以使用`--replSet`, `--shardsvr`和--bind_ip选项和其他适当选项启动mongod，例如：
 
 `mongod --shardsvr --replSet <replSetname> --dbpath <path> --bind_ip localhost,<hostname(s)|ip address(es)>`
 
 After starting all members of each shard, connect to each primary [`mongod`](https://docs.mongodb.com/manual/reference/program/mongod/#mongodb-binary-bin.mongod) and run [`rs.status()`](https://docs.mongodb.com/manual/reference/method/rs.status/#mongodb-method-rs.status) to confirm the health and availability of each member.
 
-在启动每个分片的所有成员之后，连接到每个主 [`mongod`](https://docs.mongodb.com/manual/reference/program/mongod/#mongodb-binary-bin.mongod)并运行[`rs.status()`](https://docs.mongodb.com/manual/reference/method/rs.status/#mongodb-method-rs.status) 以确认每个成员的健康和有效。
+在启动每个分片的所有成员之后，连接到每个主 [`mongod`](https://docs.mongodb.com/manual/reference/program/mongod/#mongodb-binary-bin.mongod)并运行[`rs.status()`](https://docs.mongodb.com/manual/reference/method/rs.status/#mongodb-method-rs.status) 以确保每个成员的健康和有效。
 
 ### 3.Start [`mongos`](https://docs.mongodb.com/manual/reference/program/mongos/#mongodb-binary-bin.mongos) routers
 
@@ -213,11 +213,11 @@ For more information, see [Enable the Balancer](https://docs.mongodb.com/manual/
 
 Connect a [`mongo`](https://docs.mongodb.com/manual/reference/program/mongo/#mongodb-binary-bin.mongo) shell to one of the cluster's [`mongos`](https://docs.mongodb.com/manual/reference/program/mongos/#mongodb-binary-bin.mongos) processes. Use [`sh.status()`](https://docs.mongodb.com/manual/reference/method/sh.status/#mongodb-method-sh.status) to check the overall cluster status.
 
-连接一个 [`mongo`](https://docs.mongodb.com/manual/reference/program/mongo/#mongodb-binary-bin.mongo) 命令行到一个集群的[`mongos`](https://docs.mongodb.com/manual/reference/program/mongos/#mongodb-binary-bin.mongos) 进程。使用[`sh.status()`](https://docs.mongodb.com/manual/reference/method/sh.status/#mongodb-method-sh.status) 检查整体的集群状态。
+连接一个 [`mongo`](https://docs.mongodb.com/manual/reference/program/mongo/#mongodb-binary-bin.mongo) 命令行到一个集群的[`mongos`](https://docs.mongodb.com/manual/reference/program/mongos/#mongodb-binary-bin.mongos) 进程。使用[`sh.status()`](https://docs.mongodb.com/manual/reference/method/sh.status/#mongodb-method-sh.status) 命令检查整体的集群状态。
 
 To confirm that all shards are accessible and communicating, insert test data into a temporary sharded collection. Confirm that data is being split and migrated between each shard in your cluster. You can connect a [`mongo`](https://docs.mongodb.com/manual/reference/program/mongo/#mongodb-binary-bin.mongo) shell to each shard primary and use [`db.collection.find()`](https://docs.mongodb.com/manual/reference/method/db.collection.find/#mongodb-method-db.collection.find) to validate that the data was sharded as expected.
 
-要确认所有的分片是可访问的和可通信的，把测试数据插入到一个临时的分片集合当中。在你的集合的每个分片间确认数据正在被分割和迁移。你可以把一个[`mongo`](https://docs.mongodb.com/manual/reference/program/mongo/#mongodb-binary-bin.mongo) 命令行连接到每个分片的主块区，使用db.collection.find()验证数据是否按预期进行了分片。
+要确认所有的分片是可访问的和可通信的，可以把测试数据插入到一个临时的分片集合当中。在集合的每个分片间确认数据正在被分割和迁移。你可以把一个[`mongo`](https://docs.mongodb.com/manual/reference/program/mongo/#mongodb-binary-bin.mongo) 命令行连接到每个分片的主块区，使用'db.collection.find()'验证数据是否按预期进行了分片。
 
 **IMPORTANT**
 
